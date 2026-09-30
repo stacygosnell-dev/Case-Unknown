@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case Unknown — The Last Guest</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<main class="shell">
+<header><div class="eyebrow">CONFIDENTIAL • MAJOR CRIMES DIVISION</div><h1>CASE UNKNOWN</h1><p>Case 001 — The Last Guest</p></header>
+
+<section id="home" class="card">
+<h2>Alexander Blackwood Homicide</h2>
+<p>At 11:18 PM, Alexander Blackwood was found dead inside his private study at Blackwood Manor. Everyone has a statement. Someone has a secret. One of them is a killer.</p>
+<label>Investigator name<input id="name" maxlength="24" value="Investigator"></label>
+<div class="actions"><button id="create">Create private case</button></div>
+<div class="join"><input id="codeInput" maxlength="6" placeholder="ROOM CODE"><button id="join">Join case</button></div>
+<p id="homeMsg" class="muted"></p>
+</section>
+
+<section id="lobby" class="card hidden">
+<div class="eyebrow">SECURE LOBBY</div><h2>Room <span id="roomCode"></span></h2>
+<p>Share this room code with another player. Up to six people can join.</p>
+<div id="players"></div>
+<label class="check"><input id="aiFill" type="checkbox" checked> Fill empty seats with AI</label>
+<button id="start">Begin case</button><p id="lobbyMsg" class="muted"></p>
+</section>
+
+<section id="game" class="hidden">
+<div class="grid">
+<section class="card">
+<div class="eyebrow">RESTRICTED • EYES ONLY</div><h2 id="roleTitle">Assignment</h2><p id="roleBrief"></p>
+</section>
+<section class="card"><div class="eyebrow">CASE STATUS</div><h2 id="phase">Investigation</h2><p>Room <strong id="gameCode"></strong></p></section>
+</div>
+
+<nav class="tabs">
+<button data-tab="evidence">Evidence</button><button data-tab="people">Persons of Interest</button><button data-tab="chat">Live Room</button><button data-tab="accuse">Accuse</button>
+</nav>
+
+<section id="evidence" class="panel card"><h2>Evidence Log</h2><div id="evidenceList"></div><button id="search">Search for additional evidence</button><p id="searchMsg" class="muted"></p></section>
+<section id="people" class="panel card hidden"><h2>Persons of Interest</h2><div id="suspects"></div></section>
+<section id="chat" class="panel card hidden"><h2>Live Investigation Room</h2><div id="messages" class="messages"></div><form id="chatForm"><input id="chatInput" maxlength="500" placeholder="Question, report, or theory…" autocomplete="off"><button>Send</button></form></section>
+<section id="accuse" class="panel card hidden">
+<h2>Final Accusation</h2><p class="muted">Only a detective can close the case.</p>
+<label>Suspect<select id="suspectSelect"><option></option><option>Claire Blackwood</option><option>Marcus Reed</option><option>Elena Torres</option><option>Daniel Cross</option></select></label>
+<label>Motive<select id="motive"><option></option><option>Inheritance dispute</option><option>Concealment of financial fraud</option><option>Personal revenge</option><option>Robbery</option></select></label>
+<label>Weapon<select id="weapon"><option></option><option>Broken whiskey glass</option><option>Brass bookend</option><option>Fireplace poker</option><option>Unknown</option></select></label>
+<label>Strongest evidence<select id="proof"><option></option></select></label>
+<button id="submitAccusation">Submit final accusation</button><p id="accuseMsg" class="muted"></p>
+</section>
+</section>
+
+<section id="reveal" class="card hidden">
+<div class="eyebrow">OFFICIAL RECONSTRUCTION</div><h2 id="verdict"></h2><p id="accusationText"></p>
+<hr>
+<h3>Daniel Cross</h3>
+<p>Cross killed Blackwood to prevent exposure of fraudulent property transactions. He struck Blackwood with the brass bookend, staged the study to resemble a robbery, removed the watch, and escaped through the library. The 10:57 PM security-door record and matching mud residue contradicted his denial that he entered the library.</p>
+</section>
+</main>
+<script src="/app.js"></script>
+</body></html>
